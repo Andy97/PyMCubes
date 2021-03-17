@@ -7,7 +7,7 @@ three-dimensional `NumPy` array or as a Python function ``f(x, y, z)``.
 `PyMCubes` also provides functions to export the results of the marching cubes
 in a number of mesh file formats.
 
-<span style="color:red">This is a modified version of original mcubes, a new method *marching_cubes_partial* is added. In this version, we ignores the grids with corner function value |f| > 10000. </span>
+## ** This is a modified version of original mcubes, a new method *marching_cubes_partial* is added. In this version, we ignores the grids with corner function value |f| > 10000. **
 
 ## Installation
 ```
