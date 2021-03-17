@@ -16,6 +16,7 @@ np.import_array()
 cdef extern from "pywrapper.h":
     cdef object c_marching_cubes "marching_cubes"(np.ndarray, double) except +
     cdef object c_marching_cubes_func "marching_cubes_func"(tuple, tuple, int, int, int, object, double) except +
+    cdef object c_marching_cubes_partial "marching_cubes_partial"(np.ndarray, double) except +
 
 def marching_cubes(np.ndarray volume, float isovalue):
     
@@ -33,6 +34,13 @@ def marching_cubes_func(tuple lower, tuple upper, int numx, int numy, int numz, 
         raise ValueError("numx, numy, numz cannot be smaller than 2")
 
     verts, faces = c_marching_cubes_func(lower, upper, numx, numy, numz, f, isovalue)
+    verts.shape = (-1, 3)
+    faces.shape = (-1, 3)
+    return verts, faces
+
+def marching_cubes_partial(np.ndarray volume, float isovalue):
+    
+    verts, faces = c_marching_cubes_partial(volume, isovalue)
     verts.shape = (-1, 3)
     faces.shape = (-1, 3)
     return verts, faces
